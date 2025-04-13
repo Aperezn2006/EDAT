@@ -237,7 +237,7 @@ BSTNode *_bst_insert_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
   if (cmp_elem(elem, pn->info) < 0) {
     if (!pn->left) {
       aux_node = _bst_node_new();
-      aux_node->info = (void *)elem; 
+      aux_node->info = (void *)elem;
       pn->left = aux_node;
       return aux_node;
     }
@@ -256,7 +256,7 @@ BSTNode *_bst_insert_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
 BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
   BSTNode *aux_node = NULL;
   if (!pn) {
-    return NULL; 
+    return NULL;
   }
 
   if (cmp_elem(elem, pn->info) < 0) {
@@ -264,7 +264,7 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
   } else if (cmp_elem(elem, pn->info) > 0) {
     pn->right = _bst_remove_rec(pn->right, elem, cmp_elem);
   } else {
-    if (!pn->left && !pn->right){
+    if (!pn->left && !pn->right) {
       /*SIN HIJOS*/
       free(pn);
       return NULL;
@@ -279,8 +279,9 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
       free(pn);
       return aux_node;
     } else {
-      /*DERECHO E IZQUIERDO 
-      Encontrar el sucesor en el subárbol derecho (mínimo del subárbol derecho) */
+      /*DERECHO E IZQUIERDO
+      Encontrar el sucesor en el subárbol derecho (mínimo del subárbol derecho)
+    */
       aux_node = _bst_find_min_rec(pn->right);
 
       /* Copiar la información del sucesor al nodo actual */
@@ -290,7 +291,7 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
       pn->right = _bst_remove_rec(pn->right, aux_node->info, cmp_elem);
     }
   }
-  return pn; 
+  return pn;
 }
 
 void *tree_find_min(BSTree *tree) {
@@ -318,18 +319,15 @@ Status tree_insert(BSTree *tree, const void *elem) {
   if (!tree->root) {
     tree->root = _bst_node_new();
     if (!tree->root) {
-      return ERROR; 
+      return ERROR;
     }
-    tree->root->info = (void *)elem; 
+    tree->root->info = (void *)elem;
     return OK;
   }
 
-  if (tree_contains(tree, elem))
+  if (_bst_insert_rec(tree->root, elem, tree->cmp_ele))
     return OK;
 
-  if (_bst_insert_rec(tree->root, elem, tree->cmp_ele)) {
-    return OK;
-  }
   return ERROR;
 }
 
@@ -337,7 +335,6 @@ Status tree_remove(BSTree *tree, const void *elem) {
   if (!tree || !tree->root || !elem)
     return ERROR;
 
-  if (_bst_remove_rec(tree->root, elem, tree->cmp_ele))
-    return OK;
-  return ERROR;
+  tree->root = _bst_remove_rec(tree->root, elem, tree->cmp_ele);
+  return OK;
 }
