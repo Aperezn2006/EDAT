@@ -1,0 +1,14 @@
+Al ejecutar el programa p4_e1.c se puede comprobar que los tiempos de creación y búsqueda
+varían mucho según si el programa se ejecuta en modo normal o en modo ordenado.
+    1. ¿Por qué es así?
+    2. ¿Hay alguna propiedad del árbol que permita explicar este comportamiento?
+
+
+1. La razón por la que funciona mucho más rapido en el caso de usar el modo "sorted" es porque crea
+   un arbol equilibrado el cual optimiza cualquier llamada a funciones que recorran el arbol 
+
+2. Esto se debe a la propiedad de la altura del arbol. Esta ultima determina la dificultad 
+   para ejecutar funciones como tree_insert o tree_contains. Los ordenes de complejidad son:
+    Normal = O(n)
+    Sorted = O(log(n))
+    // Siendo n el numero de nodos del arbol
