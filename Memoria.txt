@@ -1,7 +1,9 @@
+Reflexiones sobre el TAD BST
+
 Al ejecutar el programa p4_e1.c se puede comprobar que los tiempos de creación y búsqueda
 varían mucho según si el programa se ejecuta en modo normal o en modo ordenado.
-    1. ¿Por qué es así?
-    2. ¿Hay alguna propiedad del árbol que permita explicar este comportamiento?
+   1. ¿Por qué es así?
+   2. ¿Hay alguna propiedad del árbol que permita explicar este comportamiento?
 
 
 1. La razón por la que funciona mucho más rapido en el caso de usar el modo "sorted" es porque crea
@@ -12,3 +14,10 @@ varían mucho según si el programa se ejecuta en modo normal o en modo ordenado
     Normal = O(n)
     Sorted = O(log(n))
     // Siendo n el numero de nodos del arbol
+
+---------------------------------------------------------------------------------------------------
+
+Reflexiones sobre el TAD SQ
+   1. ¿Qué diferencias y similitudes hay entre el TAD SQ y el TAD Cola de la práctica anterior?
+   2. ¿Qué coste (aproximado) tiene la operación de extraer un elemento en el TAD SQ?
+   3. ¿Sería posible hacer que esta operación fuera 𝒪(1)?

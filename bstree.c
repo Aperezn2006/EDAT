@@ -243,14 +243,14 @@ BSTNode *_bst_insert_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
     }
     return _bst_insert_rec(pn->left, elem, cmp_elem);
   } else if (cmp_elem(elem, pn->info) > 0) {
-    if (!pn->right) {
-      aux_node = _bst_node_new();
-      aux_node->info = (void *)elem;
-      pn->right = aux_node;
-      return aux_node;
-    }
+      if (!pn->right) {
+        aux_node = _bst_node_new();
+        aux_node->info = (void *)elem;
+        pn->right = aux_node;
+        return aux_node;
+      }
     return _bst_insert_rec(pn->right, elem, cmp_elem);
-  }
+  } else if (cmp_elem(elem, pn->info) == 0) return pn;
   return NULL;
 }
 BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
@@ -266,17 +266,17 @@ BSTNode *_bst_remove_rec(BSTNode *pn, const void *elem, P_ele_cmp cmp_elem) {
   } else {
     if (!pn->left && !pn->right) {
       /*SIN HIJOS*/
-      free(pn);
+      _bst_node_free(pn);
       return NULL;
     } else if (!pn->left) {
       /*SOLO DERECHO*/
-      BSTNode *aux_node = pn->right;
-      free(pn);
+      aux_node = pn->right;
+      _bst_node_free(pn);
       return aux_node;
     } else if (!pn->right) {
       /*SOLO IZQUIERDO*/
-      BSTNode *aux_node = pn->left;
-      free(pn);
+      aux_node = pn->left;
+      _bst_node_free(pn);
       return aux_node;
     } else {
       /*DERECHO E IZQUIERDO
