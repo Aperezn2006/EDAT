@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "types.h"
+#include "bstree.h"
 
 /**
  * @brief Data type to declare a SearchQueue variable.
@@ -100,6 +101,8 @@ void *search_queue_getBack(const SearchQueue *q);
  * @return The SearchQueue size, 0 in case of error.
  */
 size_t search_queue_size(const SearchQueue *q);
+
+BSTree *search_queue_get_tree (const SearchQueue *q);
 
 /**
  * @brief This function prints the SearchQueue content to an output stream.

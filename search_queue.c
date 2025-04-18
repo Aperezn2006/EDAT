@@ -82,6 +82,12 @@ size_t search_queue_size(const SearchQueue *q){
   return tree_size(q->data);
 }
 
+BSTree *search_queue_get_tree (const SearchQueue *q){
+  if (!q) return NULL;
+
+  return q->data;
+}
+
 int search_queue_print(FILE *fp, const SearchQueue *q){
   if (!fp || !q)
     return -1;

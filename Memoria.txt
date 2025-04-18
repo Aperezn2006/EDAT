@@ -7,7 +7,7 @@ varían mucho según si el programa se ejecuta en modo normal o en modo ordenado
 
 
 1. La razón por la que funciona mucho más rapido en el caso de usar el modo "sorted" es porque crea
-   un arbol equilibrado el cual optimiza cualquier llamada a funciones que recorran el arbol 
+   un arbol equilibrado el cual optimiza cualquier llamada a funciones que recorran el arbol.
 
 2. Esto se debe a la propiedad de la altura del arbol. Esta ultima determina la dificultad 
    para ejecutar funciones como tree_insert o tree_contains. Los ordenes de complejidad son:
@@ -21,3 +21,14 @@ Reflexiones sobre el TAD SQ
    1. ¿Qué diferencias y similitudes hay entre el TAD SQ y el TAD Cola de la práctica anterior?
    2. ¿Qué coste (aproximado) tiene la operación de extraer un elemento en el TAD SQ?
    3. ¿Sería posible hacer que esta operación fuera 𝒪(1)?
+
+1. Las principales cosas en las que se parecen son en que ambos son estructuras para almacenar datos
+   de cualquier tipo pero la principal diferencia es como se guardan. La cola no se preocupa por el 
+   orden, mientras que el arbol binario de busqueda ordena los elementos según un criterio definido.
+
+2. El coste aproximado de extraer un elemento es O(log(n)) siendo n el numero de elementos del arbol. 
+   Esto es porque log(n) es la altura aproximada del arbol, y la altura es lo que define cuantas 
+   operaciones necesarias para la extracción.
+
+3. No, porque para extraer un elemento hay que encontrarlo y para ello hay que recorrer el arbol, 
+   la mejor manera de optimizar las funciones es creando un arbol balanceado para reducir costes.

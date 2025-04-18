@@ -35,7 +35,7 @@ int main (int argc, char const *argv[]){
     if (!(sq = search_queue_new(string_print, string_cmp))) { 
         fclose(f_in);
         printf("Failed to initialize search queue.\n");
-        return -1;
+        exit(EXIT_FAILURE);
     }
 
     line_copy = malloc(n * sizeof(char *));

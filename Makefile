@@ -3,7 +3,7 @@ CFLAGS = -Wall -pedantic -ansi
 CC = gcc
 
 ##########  General rules  ##########
-all: p4_e1 p4_e2
+all: p4_e1 p4_e2 p4_e3
 
 p4_e1: p4_e1.o bstree.o file_utils.o vertex.o
 	@$(CC) $(CFLAGS) -o  p4_e1 bstree.o vertex.o file_utils.o p4_e1.o
@@ -13,6 +13,10 @@ p4_e2: p4_e2.o bstree.o file_utils.o search_queue.o
 	@$(CC) $(CFLAGS) -o p4_e2 p4_e2.o bstree.o file_utils.o search_queue.o 
 	@echo "--> p4_e2 executable succesfully created"
 
+p4_e3: p4_e3.o bstree.o file_utils.o search_queue.o 
+	@$(CC) $(CFLAGS) -o p4_e3 p4_e3.o bstree.o file_utils.o search_queue.o 
+	@echo "--> p4_e3 executable succesfully created"
+
 ##########  Object creation  ##########
 p4_e1.o: p4_e1.c
 	@$(CC) $(CFLAGS) -c p4_e1.c -o p4_e1.o
@@ -20,6 +24,9 @@ p4_e1.o: p4_e1.c
 p4_e2.o: p4_e2.c
 	@$(CC) $(CFLAGS) -c p4_e2.c -o p4_e2.o
 	@echo "--> p4_e2.o object file created"
+p4_e3.o: p4_e3.c
+	@$(CC) $(CFLAGS) -c p4_e3.c -o p4_e3.o
+	@echo "--> p4_e3.o object file created"
 bstree.o: bstree.c
 	@$(CC) $(CFLAGS) -c bstree.c -o bstree.o
 	@echo "--> bstree.o object file created"
@@ -37,7 +44,7 @@ search_queue.o: search_queue.c
 clean:
 	@rm -f *.o
 	@echo "--> object files removed"
-	@rm -f p4_e1
+	@rm -f p4_e1 p4_e2 p4_e3
 	@echo "--> all executable files removed"
 
 runv_e1: p4_e1
